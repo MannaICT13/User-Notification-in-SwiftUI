@@ -15,6 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+       
+        // requesting for user permission to send notification
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (success, error) in
+            
+            DispatchQueue.main.async {
+                
+               if success{
+                   application.registerForRemoteNotifications()
+               }else{
+                print(error?.localizedDescription ?? "Error in Authorization")
+               }
+            }
+            
+            
+        }
+        
+        
         return true
     }
 

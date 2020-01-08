@@ -22,6 +22,13 @@ struct ContentView: View {
             
             Button(action: {
                 
+                
+                //look at AppDelegate.Swift for permission presentaion code written there
+                
+                
+                
+                
+                
             }, label: {
                 Text("Send Notification")
                     .font(.largeTitle)
