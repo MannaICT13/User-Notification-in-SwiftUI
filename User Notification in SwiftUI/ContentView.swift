@@ -9,8 +9,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello World")
+    
+        
+        
+        ZStack{
+ 
+            Color.purple.edgesIgnoringSafeArea(.all)
+        
+        VStack{
+            
+            Button(action: {
+                
+            }, label: {
+                Text("Send Notification")
+                    .font(.largeTitle)
+                    .foregroundColor(Color.white)
+                  
+                
+            })
+            
+            
+        
+        }
+        
+    }
     }
 }
 
