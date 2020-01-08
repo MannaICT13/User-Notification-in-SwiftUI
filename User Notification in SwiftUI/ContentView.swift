@@ -7,8 +7,13 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
+    
+    @State var showingAlert : Bool = false
+   
+    
     
     var body: some View {
     
@@ -34,12 +39,36 @@ struct ContentView: View {
                 
                 let timeTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
                 
+                //For UNCalanderNotificationTrigger
+                
+             /*   let date = DateComponents()
+                date.hour = 10
+                date.minute = 30
+                
+                let calenderTrigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+                */
+                
+              //For UNLocationNotificationTrigger
+             
+                /*
+                let center = CLLocationCoordinate2D(latitude: 20.45, longitude: 23.34)
+                let region = CLCircularRegion(center: center, radius: 800, identifier: UUID().uuidString)
+                region.notifyOnEntry = true
+                region.notifyOnExit = true
+                
+                
+                
+                let locationTrigger = UNLocationNotificationTrigger(region: region, repeats: false)
+                
+               */
+                
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: timeTrigger)
                 
                 UNUserNotificationCenter.current().add(request) { (error) in
                     
                     if error == nil{
-                        print("Successfully Send a notification")
+                        
+                        self.showingAlert.toggle()
                     }
                 }
                 
@@ -57,7 +86,12 @@ struct ContentView: View {
         
         }
         
-    }
+        }.alert(isPresented: $showingAlert) { () -> Alert in
+            
+            Alert(title: Text("Notification Alert!"), message: Text("Successfully send a notification"), dismissButton: .default(Text("OK")))
+        }
+        
+        
     }
 }
 
